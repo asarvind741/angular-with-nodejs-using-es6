@@ -1,0 +1,26 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row" *ngFor="let product of productList; let i=index">
+
+      <div class="col-md-1 offset-md-3 col-xs-12">
+        
+        {{i+ 1}}
+    </div>
+    <div class="col-md-4 offset-md-3 col-xs-12">
+        <img [src]="imagePath+product.productImage">
+    </div>
+    <div class="col-md-2 offset-md-3 col-xs-12">
+        
+      {{product.productName}}
+    </div>
+    <div class="col-md-4 offset-md-3 col-xs-12">
+        {{product.productDescription}}
+
+    </div>
+    <div class="col-md-1 offset-md-3 col-xs-12">
+        <button (click) ="addToCart(product._id)">Add to cart </button>
+
+    </div>
+
+  </div>
+</div>

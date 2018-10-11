@@ -1,0 +1,85 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">{{ title }}</h1>
+        <p class="text-xs-center">
+           <a [routerLink]="['/register']" >Need an account?</a>
+        </p>
+        <app-list-errors [errors]="errors"></app-list-errors>
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                formControlName="firstName"
+                placeholder="First name"
+                class="form-control form-control-lg"
+                type="text" />
+            </fieldset>
+              <ng-container *ngFor="let validation of validation_messages.firstName">
+                <div class="error-message" *ngIf="authForm.get('firstName').hasError(validation.type) && ( authForm.get('firstName').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+              <fieldset class="form-group">
+                <input
+                  formControlName="lastName"
+                  placeholder="Last name"
+                  class="form-control form-control-lg"
+                  type="text" />
+              </fieldset>
+                <ng-container *ngFor="let validation of validation_messages.lastName">
+                  <div class="error-message" *ngIf="authForm.get('lastName').hasError(validation.type) && ( authForm.get('lastName').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+            <fieldset class="form-group">
+              <input
+                formControlName="email"
+                placeholder="Email"
+                class="form-control form-control-lg"
+                type="text" />
+            </fieldset>
+           <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+          <fieldset class="form-group">
+            <input
+              formControlName="password"
+              placeholder="Confirm password"
+              class="form-control form-control-lg"
+              type="text" />
+          </fieldset>
+         <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+        <fieldset class="form-group">
+          <input
+            formControlName="confirmPassword"
+            placeholder="Confirm password"
+            class="form-control form-control-lg"
+            type="text"  validateEqual=”password”/>
+        </fieldset>
+       <ng-container *ngFor="let validation of validation_messages.confirmPassword">
+        <div class="error-message" *ngIf="authForm.get('confirmPassword').hasError(validation.type) && (authForm.get('confirmPassword').touched || authForm.get('confirmPassword').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+
+     
+           
+            <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
+              registor
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
